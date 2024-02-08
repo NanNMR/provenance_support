@@ -1,8 +1,11 @@
 [project]
-name = "provenance_track"
+name = "provenance_support"
 version = "1.2.15"
-dependencies = ['pyyaml']
-requires-python= ">= 3.8"
+dependencies = ['keyrings.efile',
+    'postgresql-access',
+    'pyyaml']
+#    'provenance_track']
+requires-python= ">= 3.10"
 readme = "README.md"
 authors = [
     {name = "Gerard"},
@@ -11,12 +14,10 @@ authors = [
 dynamic = ["license"]
 
 [project.optional-dependencies]
-mock = ['keyrings.efile',
-    'postgresql-access',
-    'pyyaml']
 
-#[project.scripts]
-#provenance_track = "provenance_track.main:main"
+[project.scripts]
+createtable = "ptsupport.createtable:main"
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
