@@ -17,6 +17,7 @@ dynamic = ["license"]
 
 [project.scripts]
 createtable = "ptsupport.createtable:main"
+modelschema = "ptsupport.modelschema:main"
 
 [build-system]
 requires = ["setuptools"]

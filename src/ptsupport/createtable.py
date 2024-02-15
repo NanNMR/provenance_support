@@ -69,7 +69,11 @@ class TableMaker:
                 curs.execute('select pg_get_tabledef(%s,%s,false)', (schema, table))
                 definition = curs.fetchone()[0]
                 parts = [c for c in definition.split('\n') if c != '']
-                cols = parts[1:-2]
+                cols = []
+                for p in parts[1:-2]:
+                    if p.startswith('  CONSTRAINT'):
+                        break
+                    cols.append(p)
                 for c in cols:
                     if (cdef := self._process_column(c)) is not None:
                         cdefs.append(cdef)
