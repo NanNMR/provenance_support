@@ -7,7 +7,7 @@ import sys
 
 import yaml
 
-from ptsupport import support_logger
+from ptsupport import support_logger, set_database
 
 os.environ['NO_PROVENANCE_TRACK_LOG'] = "1"
 from postgresql_access import DatabaseDict
@@ -94,11 +94,13 @@ def main():
     parser.add_argument('--yaml', default='local.yaml', help="YAML")
     parser.add_argument('table_name', help="table name [schema.table]")
     parser.add_argument('-o', '--output', help="File to write to")
+    parser.add_argument('--database',help="Use this database instead of one in yaml file")
 
     args = parser.parse_args()
     support_logger.setLevel(getattr(logging, args.loglevel))
     with open(args.yaml) as f:
         config = yaml.safe_load((f))
+    set_database(config,args)
     tm = TableMaker(config)
     if args.output:
         with open(args.output, 'w') as f:
