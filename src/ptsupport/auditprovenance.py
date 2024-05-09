@@ -36,7 +36,8 @@ class ProvenanceAudit:
         support_logger.debug(','.join(tnames))
         for n in tnames:
             try:
-                self._compare(n)
+                if not n.startswith('provenance_'):
+                    self._compare(n)
             except Exception:
                 support_logger.exception(f"compare {n}")
 

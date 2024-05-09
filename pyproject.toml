@@ -19,6 +19,7 @@ dynamic = ["license"]
 createtable = "ptsupport.createtable:main"
 modelschema = "ptsupport.modelschema:main"
 auditprovenance = "ptsupport.auditprovenance:main"
+deleteduplicate = "ptsupport.deleteduplicate:main"
 
 [build-system]
 requires = ["setuptools"]
